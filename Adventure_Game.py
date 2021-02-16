@@ -11,26 +11,10 @@ def print_pause(string):
     time.sleep(2)
 
 
-def valid_input_3choice(prompt, option1, option2, option3):
+def valid_input(prompt, choice_list):
     while True:
         response = input(prompt).lower()
-        if option1 in response:
-            break
-        elif option2 in response:
-            break
-        elif option3 in response:
-            break
-        else:
-            print_pause("Sorry, I don't understand.")
-    return response
-
-
-def valid_input_2choice(prompt, option1, option2):
-    while True:
-        response = input(prompt).lower()
-        if option1 in response:
-            break
-        elif option2 in response:
+        if response in choice_list:
             break
         else:
             print_pause("Sorry, I don't understand.")
@@ -75,8 +59,8 @@ def investigate_crash(visits, weapon, enemy, location, enemy_weapon):
         print_pause("1. Walk in and see where the portal takes you")
         print_pause("2. Run out of your room... "
                     "you're not dealing with this today")
-        portal = valid_input_2choice("Please enter '1' or '2' "
-                                     "to make your choice: \n", "1", "2")
+        portal = valid_input("Please enter '1' or '2' "
+                             "to make your choice: \n", ["1", "2"])
         if portal == "1":
             walk_in_portal(visits, weapon, enemy, location, enemy_weapon)
         elif portal == "2":
@@ -92,8 +76,8 @@ def investigate_crash(visits, weapon, enemy, location, enemy_weapon):
         print_pause("1. Walk in and see where the portal takes you")
         print_pause("2. Run out of your room... "
                     "you're not dealing with this today")
-        portal = valid_input_2choice("Please enter '1' or '2' "
-                                     "to make your choice: \n", "1", "2")
+        portal = valid_input("Please enter '1' or '2' "
+                             "to make your choice: \n", ["1", "2"])
         if portal == "1":
             walk_in_portal(visits, weapon, enemy, location, enemy_weapon)
         elif portal == "2":
@@ -174,8 +158,8 @@ def wake_up_decision(visits, weapon, enemy, location, enemy_weapon):
     print_pause("1. Grab for whatever you can find to defend yourself")
     print_pause("2. Go investigate the crash in your closet")
     print_pause("3. Run out of your room screaming")
-    decision = valid_input_3choice("Please enter '1', '2', or '3' to "
-                                   "make your choice:\n ", "1", "2", "3")
+    decision = valid_input("Please enter '1', '2', or '3' to "
+                           "make your choice:\n ", ["1", "2", "3"])
     if decision == "1":
         grab_weapon(visits, weapon, enemy, location, enemy_weapon)
     elif decision == "2":
@@ -200,7 +184,7 @@ def play_game():
 
 def play_again():
     print_pause("Would you like to play again?")
-    play_again = valid_input_2choice("Please enter 'y' or 'n':\n", "y", "n")
+    play_again = valid_input("Please enter 'y' or 'n':\n", ["y", "n"])
     if play_again == "y":
         print_pause("Nice! Enjoy!")
         play_game()
